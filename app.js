@@ -1,8 +1,9 @@
 require('dotenv').config()
 const express = require('express')
 const app = express()
-
+require('dotenv').config()
 app.set('view engine', 'ejs')
+require("./model/index")
 app.use(express.json())
 
 app.get('/', (req, res) => {
