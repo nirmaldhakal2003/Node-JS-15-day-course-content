@@ -30,8 +30,8 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.users = makeUserTable(sequelize,DataTypes)
 db.blogs = makeBlogTable(sequelize,DataTypes)
+db.users = makeUserTable(sequelize,DataTypes)
 
 db.sequelize.sync({ force: false }).then(() => {
     console.log("Synced Done!");
@@ -39,4 +39,4 @@ db.sequelize.sync({ force: false }).then(() => {
     console.log("Sync failed:", err);
 });
 
-module.exports = sequelize;
+module.exports = db;
