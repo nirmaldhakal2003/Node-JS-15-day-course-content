@@ -2,7 +2,10 @@
 require('dotenv').config()
 // const app = require('express')()
 const express = require('express')
-const { blogs } = require('./model/index')
+const { blogs,sequelize } = require('./model/index')
+const multer = require('./middleware/multerConfig').multer
+const storage = require('./middleware/multerConfig').storage
+const upload = multer({storage : storage})
 
 const app = express()
 
@@ -17,7 +20,7 @@ app.get("/create",(req,res)=>{
 
 })
 
-app.post('/create',async (req,res)=>{
+app.post('/create',upload.single('image'),async (req,res)=>{
     const {title,subtitle,description} = req.body 
    await blogs.create({
         title : title,
