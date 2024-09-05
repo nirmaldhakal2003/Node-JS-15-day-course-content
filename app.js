@@ -12,6 +12,8 @@ const { registerUser, loginUser, renderRegister, renderLogin } = require('./cont
 
 
 const app = express()
+const blogRoute = require("./routes/blogRoute")
+const authRoute = require("./routes/authRoute")
 
 // app.use(express.json())
 
@@ -19,28 +21,8 @@ app.set('view engine','ejs')
 require("./model/index")
 app.use(express.urlencoded({extended : true}))
 
-app.get("/",homePage)
-
-app.get("/blog/:id",singleBlog)
-
-app.get("/delete/:id",deleteBlog)
-
-
-app.get("/create",createForm)
-
-
-app.post('/create',upload.single('image') ,createBlog)
-
-
-app.get("/register",renderRegister)
-
-app.post("/register",registerUser)
-
-app.get("/login",renderLogin)
-
-app.post("/login",loginUser)
-
-
+app.use('/', blogRoute)
+app.use('/', authRoute)
 
 
 app.use(express.static('public/css/'))

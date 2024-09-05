@@ -1,3 +1,4 @@
+const { blogs } = require("../model")
 
 
 exports.homePage = async (req,res)=>{
